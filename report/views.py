@@ -208,14 +208,23 @@ def home(request):
         # Generate the report
         filepath = generate_report(prompt_input)
 
+        if not request.session.session_key:
+            request.session.save()
+
+# Now request.session.session_key should be set and valid
+        session_key = request.session.session_key
+
+
         # Save the file in the Docx_file model
         with open(filepath, 'rb') as f:
-            thefile = Docx_file(file=File(f), session_key=request.session.session_key)
+            thefile = Docx_file(file=File(f), session_key=session_key)
             thefile.save()
-
-# Retrieve the file for the current session
+    # Retrieve the file for the current session
     docx_files = Docx_file.objects.filter(session_key=request.session.session_key)
-    file_url = docx_files.last().file.url if docx_files.exists() else None
+    if docx_files.exists():
+        file_url = docx_files.last().file.url
+    else:
+        file_url = None
 
     return render(request, 'home/index.html', {'file_url': file_url})
 
