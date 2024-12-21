@@ -210,7 +210,7 @@ def home(request):
 
         # Save the file in the Docx_file model
         with open(filepath, 'rb') as f:
-            thefile = Docx_file(file=File(f), session_key=session_key)
+            thefile = Docx_file(file=File(f), session_key=request.session.session_key)
             thefile.save()
 
 # Retrieve the file for the current session
