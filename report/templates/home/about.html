@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+
+
+
+        ::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+
+
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            
+            background-color:#e3edff;
+            animation: col linear;
+            animation-timeline: scroll();
+            
+        }
+
+        @keyframes col{
+           
+            from{background-color: #addeff;}
+            to{background-color: white;}
+        }
+
+
+
+
+        .parallax {
+            position: relative;
+            background: url('static/bg-min.jpg') no-repeat center center fixed;
+            background-size:cover;
+            height: 500px;
+            z-index: -1;
+            overflow: hidden;
+            animation: gradientAnimation 15s ease-in-out infinite; /* Increased duration for smoother effect */
+            color: #ffffff;
+            
+            
+            
+            
+
+}
+
+        .parallax-content {
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            color:#ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            
+        }
+
+        header {
+            text-align: center;
+            justify-content: center;
+            margin-top: 50px;
+            padding: 50px 0;
+            background: #007acc;
+            color: #fff;
+            border-radius: 10px;
+            animation: slideInLeft 1s ease-in-out;
+            z-index: 100px;
+            animation: fade-out ease;
+            animation-timeline: view();
+            animation-range-start: contain;
+            animation-range-end: 2000px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: pulse 1s infinite;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            margin: 50px 0;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-in-out;
+            animation: fade-out ease;
+            animation-timeline: view();
+            animation-range-start: contain;
+            animation-range-end: 2000px;
+        }
+
+        .about-content .image {
+            flex: 1;
+            max-width: 40%;
+            margin: 0 auto;
+            animation: slideInRight 1s ease-in-out;
+        }
+
+        .about-content .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            animation: fadeOut 2s forwards;
+            animation-timeline : scroll();
+        }
+
+        .about-content .text {
+            flex: 2;
+            padding-left: 30px;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .about-content .text h2 {
+            font-size: 2.5em;
+            color: #007acc;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .about-content .text h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: #007acc;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            animation: pulse 2s infinite;
+        }
+
+        .mission, .values, .team {
+            text-align: center;
+            margin: 50px 0;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .mission h2, .values h2, .team h2 {
+            font-size: 2.5em;
+            color: #007acc;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .mission h2::after, .values h2::after, .team h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: #007acc;
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            animation: pulse 2s infinite;
+        }
+
+        .values .value-cards, .team .team-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .values .card, .team .team-member {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            flex: 1;
+            max-width: 300px;
+            max-height: 400px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .values .card:hover, .team .team-member:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .team .team-member {
+            position: relative;
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+            border-radius: 0%;
+            
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .team .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10%;
+            object-fit: cover;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #007acc;
+            color: #fff;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        
+        .navbar {
+            width: 100%;
+            background-color: #ffffff;
+            overflow: hidden;
+            border: 5px solid #007acc;
+            border-left: none;
+            z-index: 10000;
+            height: 70px;
+            padding-top: -40px;
+            padding-bottom: -20px;
+            position: fixed;
+        }
+
+        .navbar a {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 40px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+
+
+
+        .scroll-watcher{
+            height: 10px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background-color: #007acc;
+            width: 100%;
+            scale: 0 1;
+            transform-origin: left;
+            animation: scroll-watcher linear;
+            animation-timeline: scroll();
+            border-radius: 80px;
+        }
+
+        @keyframes scroll-watcher{
+            to{ scale: 1 1;}
+
+            from{background-color: #007acc;}
+            to{background-color: #7900dc;}
+        }
+
+
+
+
+
+
+        .team-cards > .team-member{
+
+            animation: fade-in linear;
+            animation-timeline: view();
+            animation-range: entry;
+        }
+
+        @keyframes fade-in {
+            from{scale: .2; opacity: 0.5;}
+            to {scale: 1; opacity: 2; }
+        }
+
+
+
+
+        .parallax{
+            border: 5px solid #007acc;
+            animation: the-fade-out ease;
+            animation-timeline: view();
+            animation-range-start: contain;
+            animation-range-end: 2000px;
+        }
+
+        
+        @keyframes the-fade-out {
+            from{scale: 1.1; opacity: 1;}
+            to {scale: 2.1; opacity: 0;}
+        }
+
+        @keyframes fade-out {
+            
+            to {scale: 0.1; opacity: 0;}
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<!--
+    <div class="scroll-watcher">
+
+    </div>
+-->
+
+    <div class="navbar">
+
+        <img src="static/blue3.png" alt="Logo" style=" width: 150px; left:-10px;">
+
+
+        <a href="about" style="color: black; ">About Us</a>
+
+        <a href="{% url 'home' %}" style="color: black; ">Home</a>
+
+        
+        
+    </div>
+
+
+
+    <div class="parallax" style="top: auto; padding: 10px;">
+        <div class="parallax-content">
+            <h1 style="font-size: 50px;">About Us</h1>
+            <p>Your ultimate partner in generating project reports effortlessly!</p>
+        </div>
+    </div>
+
+    <header>
+        <h1>Welcome to Our Team</h1>
+        <p>Dedicated to delivering excellence in project report generation.</p>
+    </header>
+
+
+    <div class="container">
+        
+
+        <section class="about-content">
+            <div class="image">
+                <img src="static/team.jpg" alt="Our Team">
+            </div>
+            <div class="text">
+                <h2>Who We Are</h2>
+                <p>
+                    We are a dedicated team of developers and designers passionate about making your life easier. 
+                    With our innovative Project Report Generator, we aim to streamline your workflow and help you 
+                    create professional-grade reports in no time.
+                </p>
+                <p>
+                    Our mission is to provide a user-friendly platform where anyone can generate comprehensive 
+                    project reports with just a few clicks, saving time and ensuring high quality.
+                </p>
+            </div>
+        </section>
+
+        <section class="mission" style="animation: fade-out ease;
+        animation-timeline: view();
+        animation-range-start: contain;
+        animation-range-end: 2000px;">
+            <h2>Our Mission</h2>
+            <p>Empowering individuals and organizations to produce top-quality project reports quickly and efficiently.</p>
+        </section>
+
+        <section class="values" style="animation: fade-out ease;
+        animation-timeline: view();
+        animation-range-start: contain;
+        animation-range-end: 2000px;">
+            <h2>Our Core Values</h2>
+            <div class="value-cards">
+                <div class="card">
+                    <h3>Innovation</h3>
+                    <p>Constantly improving our tools to meet your needs.</p>
+                </div>
+                <div class="card">
+                    <h3>Quality</h3>
+                    <p>Delivering only the best outputs, every time.</p>
+                </div>
+                <div class="card">
+                    <h3>Customer Focus</h3>
+                    <p>Putting our users at the center of everything we do.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="team">
+            <h2>Our Goals</h2>
+            <div class="team-cards" style="margin-bottom: 100px;">
+                <div class="team-member">
+
+                    <img src="static/report.jpg" alt="Team Member 1">
+                    <h3>Report Quality</h3>
+                    <p>Quality and acceptable report</p>
+                </div>
+                <div class="team-member">
+                    <img src="static/productivity.jpg" alt="Team Member 2">
+                    <h3>Productivity</h3>
+                    <p>To make students productive</p>
+                </div>
+                <div class="team-member">
+                    <img src="static/ai.png" alt="Team Member 3">
+                    <h3>Advancement</h3>
+                    <p>To upgrade students for the new era</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Project Report Generator. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Adjust parallax effect for scrolling
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.parallax');
+            const scrollTop = window.pageYOffset;
+            parallax.style.transform = `translateY(${scrollTop * 0.5}px)`;
+        });
+
+        // Apply hover effects to cards
+        const cards = document.querySelectorAll('.card, .team-member');
+
+        cards.forEach(card => {
+            card.addEventListener('mouseover', function () {
+                this.style.transform = 'scale(1.1)';
+                this.style.boxShadow = '0 8px 12px rgba(0, 0, 0, 0.2)';
+            });
+
+            card.addEventListener('mouseout', function () {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
