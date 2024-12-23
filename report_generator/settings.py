@@ -78,7 +78,10 @@ WSGI_APPLICATION = 'report_generator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
+# Database
+DATABASES = {
+    'default': dj_database_url.parse(config("DATABASE_URL"))
+}
 
 
 # Password validation
