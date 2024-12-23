@@ -30,6 +30,12 @@ def home(request):
         prompt_input = p_i.lower()
         load_dotenv()
 
+
+        if not request.session.session_key:
+            request.session.save()  # Ensure the session key is generated
+        session_key = request.session.session_key
+
+        
         # Initialize Gemini API
         genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
         generation_config = {
