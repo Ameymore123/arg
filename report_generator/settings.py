@@ -87,7 +87,7 @@ DATABASES = {
 }
 
 
-DATABASES['default'] = dj_database_url.parse("postgresql://ameygenerator_ip0i_user:pTr51rvsrlnKk1jiDdoAhTuEF0HoTRtd@dpg-ctn6tdlds78s73c1o20g-a.oregon-postgres.render.com/ameygenerator_ip0i")
+DATABASES['default'] = dj_database_url.parse(config("DATABASE_URL"))
 
 
 # Password validation
