@@ -1,0 +1,521 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprintai site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+
+    <style>
+        :root {
+            --main-color: #ecf0f1;
+            --point-color: #555;
+            --size: 8px;
+            --primary-color: #007bff;
+            --secondary-color: #0056b3;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #ececec);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .container h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .container p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            box-shadow: 0 8px 20px rgba(0, 86, 179, 0.4);
+        }
+
+        .download-button {
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .loader {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 100000;
+            background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+            cursor: pointer; /* Add a pointer on hover */
+        }
+
+        .loader__element {
+            border-radius: 100%;
+            border: var(--size) solid #fff;
+            margin: calc(var(--size) * 2);
+        }
+
+        .loader__element:nth-child(1) {
+            animation: preloader .6s ease-in-out alternate infinite;
+        }
+
+        .loader__element:nth-child(2) {
+            animation: preloader .6s ease-in-out alternate .2s infinite;
+        }
+
+        .loader__element:nth-child(3) {
+            animation: preloader .6s ease-in-out alternate .4s infinite;
+        }
+
+        @keyframes preloader {
+            100% { transform: scale(2); }
+        }
+
+        .loader-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .loader-text h1, .loader-text h3 {
+            margin: 0;
+        }
+        
+        .background-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .background-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .background-animation span:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .background-animation span:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+        }
+        .background-animation span:nth-child(3) {
+            left: 25%;
+            animation-delay: 4s;
+        }
+        .background-animation span:nth-child(4) {
+            left: 40%;
+            animation-delay: 0s;
+        }
+        .background-animation span:nth-child(5) {
+            left: 55%;
+            animation-delay: 2s;
+        }
+        .background-animation span:nth-child(6) {
+            left: 70%;
+            animation-delay: 4s;
+        }
+        .background-animation span:nth-child(7) {
+            left: 80%;
+            animation-delay: 0s;
+        }
+        .background-animation span:nth-child(8) {
+            left: 90%;
+            animation-delay: 2s;
+        }
+        .background-animation span:nth-child(9) {
+            left: 95%;
+            animation-delay: 4s;
+        }
+
+        .divider {
+            width: 80%;
+            height: 1px;
+            background-color: #ccc;
+            margin: 20px auto;
+        }
+
+        .logo{
+            justify-content: center;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            color: #007bff;
+        }
+
+
+
+        
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html, body{
+
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        .main{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            
+
+        }
+
+        .left{
+            position: relative;
+            width: 35%;
+            height: 100%;
+            background-color:#007bff;
+            color: white;
+        }
+
+        .right{
+            width: 65%;
+            height: 100%;
+            background-color: rgb(229, 229, 229);
+        }
+
+        .right-up{
+            display: flex;
+            flex-direction: column;
+            
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            
+            padding: 30px;
+            background: url('static/sbg2.jpg');
+            
+            
+            text-align: center;
+            justify-content: center;
+            
+        }
+
+        .lnavr{
+            display: flex;
+            width: 100%;
+            padding: 20px 30px;
+            justify-content: space-between;
+            
+        }
+
+        .lnavr a {
+            margin-right: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+
+
+        .navi{
+            display: flex;
+            align-items: center;
+        }
+
+
+        .left .textcenter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .textcenter p {
+            opacity: .8;
+        }
+
+        
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #007acc;
+            color: #fff;
+            animation: fadeInUp 1s ease-in-out;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+
+
+        @media(max-width: 500px){
+            .main{
+                flex-direction: column;
+            }
+
+            .main .left{
+                width: 100%;
+                
+            }
+            
+            .main .right{
+                width: 100%;
+                
+            }
+
+            .textcenter .th{
+                font-size: 18vw;
+            }
+
+            .textcenter .tp{
+                font-size: 14vw;
+            }
+
+            .logo{
+                margin-bottom: -50px;
+            }
+
+            
+        }
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <!--
+    <div class="navbar">
+        <a href="{% url 'home' %}" style="color: black; margin-top: 35px;">Home</a>
+
+        <a href="about" style="color: black; margin-top: 35px;">About Us</a>
+
+        <img src="static/blue2.png" alt="Logo" style="height: auto; width: 550px; margin-left: 200px;">
+        
+    </div> -->
+
+    <div class="main">
+
+        <div class="left">
+            <div class="navi">
+                <i class="ri-arrow-left-line"></i> 
+                <div class="lnavr">
+                    <a href="/about">About Us</a> <a href="#">{{ user.username }}</a> <a href="/logout">Log out</a>
+
+                </div>
+            </div>
+
+            <div class="textcenter">
+                <img src="{% static 'bdl2.png' %}" alt="" style="width: 15vmax; height: auto;">
+                <p class="tp" style="font-size: 1.5vmax; margin-top: 5px; text-align: justify;">Now get rid off the clutter of too many buttons, make a project report in just three steps with the help of our project report generator within minutes. "{{ user }}"</p>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="right-up">
+
+
+
+                
+    <div class="container">
+        
+        
+        <div class="logo">
+            
+            <img src="{% static 'logo_png.png' %}" alt="Logo" style="height: 6vw; width: 7vw; margin-top: -1vw;">
+            <h1 class ="pr" style="font-size: 2vmax;">Project Report Generator</h1>
+        </div>
+        <p style="font-size: 1.5vmax;">Generate your reports quickly and easily.</p>
+        <form autocomplete="off" method="post" onsubmit="showLoading()">
+            {% csrf_token %}
+            <label for="title" style="font-size: 1.5vmax; margin-top: 15px;">Enter Title or Topic:</label>
+            <input type="text"  id="title" placeholder="Type your Topic" name="prompt" style="text-align: center;" required>
+            <input type="hidden" name="user" value="{{request.user.id}}">
+            <button type="submit">Generate Report</button>
+        </form>
+
+        <div id="download-message" style="display: none;">
+            <h3 style="font-size: 1vmax; color: #007bff; margin-top: 10px;">Your report is ready!</h3>
+            <p style="font-size: 1vmax; color: #007bff;">Click the button below to download your report.</p>
+        </div>
+
+        <a href="{{ file_url }}" download class="download-button" id="download-button">Download</a>
+    </div>
+
+                </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="loader" id="loader">
+        <div class="background-animation">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <span class="loader__element"></span>
+            <span class="loader__element"></span>
+            <span class="loader__element"></span>
+        </div>
+        <div class="loader-text">
+            <h1>Just a moment</h1>
+            <h3>We are working at the speed of light</h3>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Project Report Generator. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showLoading() {
+            localStorage.setItem('formSubmitted', 'true');
+            document.getElementById('loader').style.display = 'flex';
+        }
+
+        window.onload = function() {
+            var fileUrl = "{{ file_url }}";
+            var formSubmitted = localStorage.getItem('formSubmitted');
+            if (fileUrl && formSubmitted === 'true') {
+                var downloadButton = document.getElementById('download-button');
+                var downloadMessage = document.getElementById('download-message');
+                downloadButton.style.display = 'block';
+                downloadMessage.style.display = 'block';
+                document.getElementById('loader').style.display = 'none';
+                localStorage.removeItem('formSubmitted');
+            }
+        }
+    </script>
+</body>
+</html>
+
