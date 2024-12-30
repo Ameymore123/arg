@@ -13,7 +13,8 @@ urlpatterns = [
     path('log', views.log, name="log"),
     path('logout', views.handlelogout, name='handlelogout'),
     path('login', views.handlelogin, name='handlelogin'),
-    path('sign', views.sign, name='sign')
+    path('sign', views.sign, name='sign'),
+    path('download', views.download, name="download")
     
 
 
