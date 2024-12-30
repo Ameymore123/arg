@@ -33,12 +33,13 @@
 
         a {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 40px 80px;
             background-color: #007bff; /* Blue button matching home page */
             color: #fff;
             text-decoration: none;
-            border-radius: 3px;
+            border-radius: 10px;
             transition: background-color 0.3s ease;
+            font-size: large;
         }
 
         a:hover {
@@ -56,7 +57,7 @@
         <h3 style="font-size: 2vmax; color: #007bff; margin-top: 10px;">Your report is ready!</h3>
         <p style="font-size: 2vmax; color: #007bff;">Click the button below to download your report.</p>
         {% if file_url %}
-            <a href="{{ file_url }}" download>Go to Download</a>
+            <a href="{{ file_url }}" download>Download</a>
         {% else %}
             <p>{{ message }}</p>
         {% endif %}
