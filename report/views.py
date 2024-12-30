@@ -62,7 +62,7 @@ def home(request):
                 system_instruction="You are a chat bot which is used to generate Projects report of huge paragraphs on given topic, your response should be proper and reliable for storing in a word file in proper format of project report. Use Heading 1 for main sections and Heading 2 for subheadings."
             )
 
-            def generate_report(title):
+            def generate_report(title, user):
                 document = Document()
 
                 # Title
@@ -103,7 +103,7 @@ def home(request):
                 temp_dir = 'tmp'
                 os.makedirs(temp_dir, exist_ok=True)
                 
-                filepath = os.path.join(temp_dir, f"{p_i}_{datetime.now().strftime('%Y%m%d%H%M%S')}.docx")
+                filepath = os.path.join(temp_dir, f"{user.username}_{p_i}_{datetime.now().strftime('%Y%m%d%H%M%S')}.docx")
                 document.save(filepath)
 
                 print("All Total time---------- ", int(tttt + total + tot + tt))
@@ -223,7 +223,7 @@ def home(request):
 
 
             # Generate the report
-            filepath = generate_report(prompt_input)
+            filepath = generate_report(prompt_input, user)
             print(filepath)
 
             # Save Report to Database
