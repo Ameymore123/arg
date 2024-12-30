@@ -100,7 +100,7 @@ def home(request):
                     document.add_paragraph("No content available for this topic.")
 
                 # Save the document
-                temp_dir = 'tmp'
+                temp_dir = os.path.join('tmpdocx', user.username)
                 os.makedirs(temp_dir, exist_ok=True)
                 
                 filepath = os.path.join(temp_dir, f"{user.username}_{p_i}_{datetime.now().strftime('%Y%m%d%H%M%S')}.docx")
@@ -180,7 +180,7 @@ def home(request):
 
             
             def fetch_images(title):
-                tmp_dir = 'tmp'
+                tmp_dir = 'images'
                 os.makedirs(tmp_dir, exist_ok=True)  # Ensure the tmp directory exists
 
                 try:
@@ -229,6 +229,7 @@ def home(request):
             # Save Report to Database
             with open(filepath, 'rb') as f:
                 Docx_file.objects.create(file=File(f), user=user)
+                print(p_i + ' created successfully ------------------------------------------------------------------------------------------------------------------------------------')
                 
 
                 return redirect('download')
