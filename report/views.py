@@ -222,18 +222,18 @@ def home(request):
 
             # Generate the report
             filepath = generate_report(prompt_input)
+            print(filepath)
 
             # Save Report to Database
             with open(filepath, 'rb') as f:
                 docx_file = Docx_file.objects.create(file=File(f), user=user)
                 docx_file.save()
+                
 
-            # Get URL for the most recent file
-            thefile = Docx_file.objects.filter(user=user).last()
-            file_url = thefile.file.url
-            
+                return redirect('download')
+                
         
-        return render(request, 'home/index.html', {'file_url': file_url, "user":user})
+        return render(request, 'home/index.html', {"user":user})
 
     else:
         return redirect('sign')
@@ -317,4 +317,22 @@ def sign(request):
 
 
 
+def download(request):
+    file_url = None  # Default value
+    if request.method == 'POST':
+        user = request.user
+        thefile = Docx_file.objects.filter(user=user).last()
+        if thefile and thefile.file:  # Ensure file exists
+            file_url = thefile.file.url
+    elif request.method == 'GET':  # Optionally handle GET requests
+        user = request.user
+        thefile = Docx_file.objects.filter(user=user).last()
+        if thefile and thefile.file:
+            file_url = thefile.file.url
 
+    if not file_url:
+        message = "No file available for download. Please try again."
+    else:
+        message = None
+
+    return render(request, 'home/download.html', {"file_url": file_url, "message": message})
