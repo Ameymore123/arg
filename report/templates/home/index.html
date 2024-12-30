@@ -468,7 +468,9 @@
             <p style="font-size: 1vmax; color: #007bff;">Click the button below to download your report.</p>
         </div>
 
-        <a href="{{ file_url }}" download class="download-button" id="download-button">Download</a>
+    <!--
+        <a href="download" download class="download-button" id="download-button">Download</a> -->
+
     </div>
 
                 </div>
@@ -496,26 +498,29 @@
     <footer>
         <p>&copy; 2024 Project Report Generator. All rights reserved.</p>
     </footer>
-
     <script>
+        const form = document.getElementById('dataForm');
+        const loader = document.getElementById('loader');
+
+        // Show loader on form submission
         function showLoading() {
             localStorage.setItem('formSubmitted', 'true');
             document.getElementById('loader').style.display = 'flex';
         }
 
+        // Stop the loader on page load (handles back navigation)
         window.onload = function() {
-            var fileUrl = "{{ file_url }}";
-            var formSubmitted = localStorage.getItem('formSubmitted');
-            if (fileUrl && formSubmitted === 'true') {
-                var downloadButton = document.getElementById('download-button');
-                var downloadMessage = document.getElementById('download-message');
-                downloadButton.style.display = 'block';
-                downloadMessage.style.display = 'block';
-                document.getElementById('loader').style.display = 'none';
-                localStorage.removeItem('formSubmitted');
+            loader.style.display = 'none';
+        };
+
+        // Stop the loader on pageshow event (handles cache situations)
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                loader.style.display = 'none';
             }
-        }
+        });
     </script>
+    
 </body>
 </html>
 
