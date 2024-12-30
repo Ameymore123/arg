@@ -31,22 +31,6 @@ from requests import get
 from bs4 import BeautifulSoup
 # Create your views here.
 
-from threading import Thread
-
-def save_file_to_db(filepath, user):
-    """Helper function to save the file to the database."""
-    try:
-        with open(filepath, 'rb') as f:
-            docx_file = Docx_file.objects.create(file=File(f), user=user)
-            docx_file.save()
-    except Exception as e:
-        print(f"Error saving file to database: {e}")
-
-
-
-
-
-
 
 def home(request):
     if request.user.is_authenticated:
@@ -243,12 +227,11 @@ def home(request):
             print(filepath)
 
             # Save Report to Database
-            thread = Thread(target=save_file_to_db, args=(filepath, user))
-            thread.start()
-
+            with open(filepath, 'rb') as f:
+                Docx_file.objects.create(file=File(f), user=user)
                 
 
-            return redirect('download')
+                return redirect('download')
                 
         
         return render(request, 'home/index.html', {"user":user})
@@ -257,10 +240,6 @@ def home(request):
         return redirect('sign')
 
 
-
-
-def savefile():
-    pass
 
 
 
