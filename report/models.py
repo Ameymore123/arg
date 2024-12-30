@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Docx_file(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='docx_files', unique=True)
+    file = models.FileField(upload_to='docx_files')
     timestamp = models.DateTimeField(auto_now_add=True)  # Store the time the file was generated
 
 
