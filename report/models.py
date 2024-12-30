@@ -7,6 +7,7 @@ class Docx_file(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)  # Store the time the file was generated
 
 
+
 class Prompt(models.Model):
     sno = models.AutoField(primary_key=True)  # Auto-incrementing primary key
     p_input = models.CharField(max_length=255)
