@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - Project Report Generator</title> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Light blue background matching home page */
+            background: url("{% static 'sbg2.jpg' %}");
+            color: #333;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue button matching home page */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0062cc;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 style="font-size: 2vmax; color: #007bff; margin-top: 10px;">Your report is ready!</h3>
+        <p style="font-size: 2vmax; color: #007bff;">Click the button below to download your report.</p>
+        {% if file_url %}
+            <a href="{{ file_url }}" download>Go to Download</a>
+        {% else %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </div>
+
+
+
+
+</body>
+</html>
