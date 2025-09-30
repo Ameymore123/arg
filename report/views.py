@@ -57,7 +57,7 @@ def home(request):
                 "response_mime_type": "text/plain",
             }
             model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash",
+                model_name="models/gemini-2.5-flash-preview-09-2025",
                 generation_config=generation_config,
                 system_instruction="You are a chat bot which is used to generate Projects report of huge paragraphs on given topic, your response should be proper and reliable for storing in a word file in proper format of project report. Use Heading 1 for main sections and Heading 2 for subheadings."
             )
@@ -338,3 +338,4 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
+
