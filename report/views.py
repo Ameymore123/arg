@@ -50,16 +50,16 @@ def home(request):
             # Initialize Gemini API
             genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
             generation_config = {
-                "temperature": 1,
-                "top_p": 0.95,
-                "top_k": 64,
-                "max_output_tokens": 3100,
+                "temperature": 0.5,
+                "top_p": 0.80,
+                "top_k": 45,
+                "max_output_tokens": 1500,
                 "response_mime_type": "text/plain",
             }
             model = genai.GenerativeModel(
                 model_name="models/gemini-2.5-flash-preview-09-2025",
                 generation_config=generation_config,
-                system_instruction="You are a chat bot which is used to generate Projects report of huge paragraphs on given topic, your response should be proper and reliable for storing in a word file in proper format of project report. Use Heading 1 for main sections and Heading 2 for subheadings."
+                system_instruction="You are a chat bot which is used to generate Projects report of huge paragraphs on given topic, your response should be proper and reliable for storing in a word file in proper format of project report. Use Heading 1 for main sections and Heading 2 for subheadings. (Note that dont take much longer time to generate the response give it as fast as possible)"
             )
 
             def generate_report(title, user):
@@ -338,6 +338,7 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
+
 
 
 
