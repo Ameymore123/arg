@@ -81,15 +81,16 @@ WSGI_APPLICATION = 'report_generator.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
-
+'''
 DATABASES['default'] = dj_database_url.parse(config("DATABASE_URL"))
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -155,6 +156,7 @@ SESSION_COOKIE_AGE = 3600  # Session expiration time in seconds (1 hour)
 SESSION_COOKIE_HTTPONLY = True  # Makes the session cookie HTTP-only
 SESSION_COOKIE_SECURE = False  # Change to True for HTTPS deployment
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Optionally expire the session when the browser is closed
+
 
 
 
