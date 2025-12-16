@@ -53,7 +53,7 @@ def home(request):
                 "temperature": 0.5,
                 "top_p": 0.80,
                 "top_k": 45,
-                "max_output_tokens": 1500,
+                "max_output_tokens": 5000,
                 "response_mime_type": "text/plain",
             }
             model = genai.GenerativeModel(
@@ -338,6 +338,7 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
+
 
 
 
