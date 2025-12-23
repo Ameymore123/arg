@@ -161,6 +161,11 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Optionally expire the session when the
 
 
 
+RAZORPAY_KEY_ID = "rzp_live_Rux7pUWYLvY6E5"
+RAZORPAY_KEY_SECRET = "y2mtw19zf0aJrKJzEcvThID4"
+
+
+
 
 
 
