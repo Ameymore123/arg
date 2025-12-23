@@ -4,18 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5VRB33FSR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X5VRB33FSR');
-</script>
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blueprintai site</title>
@@ -23,35 +11,6 @@
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
     rel="stylesheet"/>
-
-
-
-
-
-
-
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T4JBBJ44');</script>
-<!-- End Google Tag Manager -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
     <style>
         :root {
@@ -324,7 +283,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .main{
             display: flex;
             width: 100%;
-            height: 100%;
+            height: 250%;
             background-color: white;
             
 
@@ -413,6 +372,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
         @media(max-width: 500px){
+
+
+            .lnavr{
+                margin-top: -300px;
+            }
+
+            .navi{
+                height: 350px;
+            }
+
+
+
+            .ri-arrow-left-line{
+                margin-top: -300px;
+            }
+
+
             .main{
                 flex-direction: column;
             }
@@ -420,10 +396,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .main .left{
                 width: 100%;
                 
+
+                
             }
             
             .main .right{
                 width: 100%;
+          
                 
             }
 
@@ -441,6 +420,611 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= SAMPLE REPORT STRIP SECTION ================= */
+
+.sample-strip-section {
+    margin-top: 60px;
+    padding: 40px 30px;
+    background: #f9fbff;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0, 123, 255, 0.08);
+    height: 500px;
+}
+
+.sample-strip-section h2 {
+    font-size: 1.5vmax;
+    color: black;
+    margin-bottom: 8px;
+    margin-right: 670px;
+    
+}
+
+.sample-strip-subtitle {
+    font-size: 1vmax;
+    color: #666;
+    margin-bottom: 30px;
+    margin-right: 485px;
+}
+
+.sample-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px 25px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 60px;
+}
+
+.sample-strip:hover {
+    transform: translateX(6px);
+    box-shadow: 0 18px 45px rgba(0, 123, 255, 0.18);
+}
+
+.strip-left h3 {
+    font-size: 1.3vmax;
+    color: #333;
+    margin-bottom: 5px;
+    display: none;
+}
+
+.strip-left p {
+    font-size: 0.95vmax;
+    color: #777;
+}
+
+.strip-right {
+    width: 38px;
+    height: 38px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.sample-strip:hover .strip-right {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sample-strip-section h2 {
+        font-size: 6vw;
+    }
+
+    .strip-left h3 {
+        font-size: 4vw;
+    }
+
+    .strip-left p {
+        font-size: 2.6vw;
+    }
+
+
+    .sample-strip-section h2{
+        font-size: 1.5vmax;
+        width:100%;
+    }
+
+    .sample-strip-subtitle{
+        font-size: 1.3vmax;
+        width:100%;
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* About Us Section Styles */
+.about-section {
+    background-color: white;
+    /* Dark background to match theme */
+    padding: 80px 5%;
+    /* Top/bottom padding, horizontal matches hero */
+    display: flex;
+    flex-direction: row;
+    /* Default layout: image on left, text on right */
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    /* Space between image and text */
+    color: black;
+    /* Default text color */
+}
+
+.about-image-wrapper {
+    flex: 1;
+    /* Takes available space */
+    max-width: 45%;
+    /* Controls image width */
+    position: relative;
+    border-radius: 10px;
+    /* Applied to the wrapper for overall shape */
+    overflow: visible;
+    /* Important to allow image overlap outside wrapper's bounds */
+
+    transform: scale(1);
+    transition: transform 0.5s ease;
+
+}
+
+.about-image-wrapper:hover {
+    transform: scale(1.02);
+    /* Slight scale on hover for engagement */
+
+}
+
+/* Image Collage container for 3 images */
+.image-collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns for top images */
+    grid-template-rows: auto auto;
+    /* Two rows, one for top, one for bottom */
+    gap: 20px;
+    /* Space between grid items */
+    position: relative;
+    /* For z-index and potential finer positioning */
+    padding-bottom: 30px;
+    /* Ensure space for bottom image's shadow/overlap */
+}
+
+.image-collage img {
+    display: block;
+    width: 105%;
+    height: 90%;
+    /* Fixed height for consistent look */
+    object-fit: cover;
+    /* Cover the area, cropping if necessary */
+    border-radius: 8px;
+    /* Slightly smaller radius for individual images */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    /* Individual image shadow */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    margin-top: 100px;
+}
+
+.image-collage .img-top-left:hover {
+    transform: translateY(-5px) scale(1.6) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    /* Lift and slightly scale on hover */
+    filter: brightness(1.1) saturate(1.1);
+    /* Enhance color on hover */
+    transform-style: preserve-3d;
+    transition: transform 1s, filter 1s, z-index 0s;
+    z-index: 1000;
+
+}
+
+
+.image-collage .img-top-right:hover {
+    transform: translateY(-5px) scale(1.6) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    /* Lift and slightly scale on hover */
+    filter: brightness(1.1) saturate(1.1);
+    /* Enhance color on hover */
+    transform-style: preserve-3d;
+    transition: transform 1s, filter 1s, z-index 0s;
+    z-index: 1000;
+}
+
+
+.image-collage .img-bottom:hover {
+    transform: translateY(-5px) scale(1.6) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    /* Lift and slightly scale on hover */
+    filter: brightness(1.1) saturate(1.1);
+    /* Enhance color on hover */
+    transform-style: preserve-3d;
+    transition: transform 1s, filter 1s, z-index 0s;
+    z-index: 1000;
+}
+
+
+
+
+.image-collage .img-top-left {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 2;
+    /* Ensure it's not buried by the right image initially */
+    transform: rotate(-3deg);
+    /* Slight rotation for a dynamic feel */
+    transform-origin: bottom left;
+    object-fit: cover;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(-10deg);
+    transition: transform 1s;
+    margin-left: 75px;
+    scale: 1.2;
+}
+
+.image-collage .img-top-right {
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 3;
+    /* Appears on top of the left image */
+    margin-left: -50px;
+    /* Overlap effect */
+    transform: rotate(2deg);
+    /* Slight rotation */
+    transform-origin: bottom right;
+    object-fit: cover;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(10deg);
+    transition: transform 1s;
+    margin-left: -75px;
+    scale: 1.2;
+}
+
+.image-collage .img-bottom {
+    grid-column: 1 / span 2;
+    /* Spans both columns */
+    grid-row: 2;
+    z-index: 1;
+    /* Appears behind the overlapping top images */
+    margin-top: -30px;
+    /* Slight overlap with the bottom of top images */
+    transform: scale(1.05);
+    /* Slightly larger for prominence */
+    
+    width: 62%;
+    height: 140%;
+    object-fit: cover;
+    margin-left: 16%;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    transition: transform 1s;
+    margin-top: -115px;
+
+}
+
+
+
+@keyframes gather {
+    0% {
+        transform: translateY(0px) translateX(-650px) rotate(0deg);
+    }
+
+    20% {
+        transform: translateY(0px) translateX(0px) rotate(-360deg);
+    }
+
+    100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        /* Change scaleX to 1 */
+    }
+}
+
+
+.about-content {
+    flex: 1;
+    max-width: 45%;
+    text-align: left;
+    opacity: 0;
+    /* Hidden initially for animation */
+    /* transform-origin: left; -- REMOVED: Not needed for clip-path */
+
+    animation: revealFromLeft 1s ease-out;
+    /* New animation name */
+    animation-timeline: view();
+    /* Trigger animation when element enters viewport */
+    animation-range: entry 25% cover 40%;
+    /* Adjust as needed for desired scroll trigger */
+    animation-fill-mode: forwards;
+    /* Element stays in its final animated state */
+}
+
+
+@keyframes revealFromLeft {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        /* Clip 100% from the right, hiding content */
+        opacity: 0;
+        /* Start completely transparent */
+    }
+
+    100% {
+        clip-path: inset(0 0% 0 0);
+        /* Clip 0% from the right, fully revealing content */
+        opacity: 1;
+        /* End fully opaque */
+    }
+}
+
+.about-content h2 {
+    font-size: 3em;
+    color: #007bff;
+    /* Matching heading color */
+    margin-bottom: 25px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.about-content h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background-color: #007bff;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-content h2:hover::after {
+    transform: scaleX(1);
+}
+
+.about-content p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: black;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.stat-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(239, 183, 144, 0.2);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.stat-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Media Queries for About Section (Adjusted for new image structure) */
+@media (max-width: 992px) {
+    .about-section {
+        flex-direction: column;
+        padding: 60px 5%;
+    }
+
+    .about-image-wrapper {
+        max-width: 90%;
+        /* Allow wider image collage */
+        margin-bottom: 40px;
+        /* Reset overflow for smaller screens if collage needs to be contained */
+        overflow: hidden;
+    }
+
+    .about-content {
+        max-width: 90%;
+        text-align: center;
+    }
+
+    .about-content h2::after {
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: center;
+    }
+
+    .about-content h2:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .image-collage {
+        display: flex;
+        /* Switch to flexbox for simpler vertical stacking */
+        flex-direction: column;
+        align-items: center;
+        /* Center images when stacked */
+        gap: 20px;
+        padding-bottom: 0;
+        /* No need for bottom padding when stacked */
+    }
+
+    .image-collage img {
+        height: auto;
+        /* Allow height to adjust */
+        max-width: 80%;
+        /* Limit width of individual images */
+        margin: 0 !important;
+        /* Remove any negative margins from desktop layout */
+        transform: none !important;
+        /* Remove any rotations from desktop layout */
+        z-index: auto !important;
+        /* Reset z-index */
+    }
+}
+
+/* ================= MOBILE FIX FOR ABOUT SECTION ================= */
+
+@media (max-width: 768px) {
+
+    /* Stack everything vertically */
+    .about-section {
+        flex-direction: column;
+        padding: 50px 6%;
+        gap: 40px;
+    }
+
+    /* Image wrapper full width */
+    .about-image-wrapper {
+        max-width: 100%;
+        width: 100%;
+        overflow: hidden;
+        transform: none !important;
+    }
+
+    /* Image collage becomes vertical list */
+    .image-collage {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
+    }
+
+    /* Normalize all images */
+    .image-collage img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100%;
+        object-fit: cover;
+
+        /* Kill all effects */
+        transform: none !important;
+        scale: 1 !important;
+        rotate: 0deg !important;
+        margin: 0 !important;
+        z-index: auto !important;
+
+        /* Disable hover & animation */
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Disable hover zoom explicitly */
+    .image-collage img:hover {
+        transform: none !important;
+        filter: none !important;
+    }
+
+    /* Text content full width */
+    .about-content {
+        max-width: 100%;
+        text-align: center;
+
+        /* Disable reveal animation */
+        opacity: 1 !important;
+        animation: none !important;
+        clip-path: none !important;
+    }
+
+    /* Center heading underline */
+    .about-content h2::after {
+        left: 50%;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Improve text readability */
+    .about-content p {
+        font-size: 1em;
+        line-height: 1.7;
+    }
+
+    /* Stats stack vertically */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Disable hover motion on stats */
+    .stat-item {
+        transition: none !important;
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -487,7 +1071,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
                 
-    <div class="container">
+    <div class="container" style="margin-top: 0px;">
         
         
         <div class="logo">
@@ -496,7 +1080,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <h1 class ="pr" style="font-size: 2vmax;">Project Report Generator</h1>
         </div>
         <p style="font-size: 1.5vmax;">Generate your reports quickly and easily.</p>
-        <form autocomplete="off" method="post" onsubmit="showLoading()">
+        <form id="dataForm" autocomplete="off" method="post">
+
             {% csrf_token %}
             <label for="title" style="font-size: 1.5vmax; margin-top: 15px;">Enter Title or Topic:</label>
             <input type="text"  id="title" placeholder="Type your Topic" name="prompt" style="text-align: center;" required>
@@ -514,9 +1099,102 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Sample Reports Strip Section -->
+<div class="sample-strip-section">
+    <h2>Sample Reports</h2>
+    <p class="sample-strip-subtitle">
+        Explore sample reports generated by BlueprintAi
+    </p>
+
+    <div class="sample-strip">
+        <div class="strip-left">
+            <h3>Mechanical Engineering</h3>
+            <p>Heat Transfer, Materials, Manufacturing & Design</p>
+        </div>
+        <div class="strip-right">
+            <i class="ri-download-2-line"></i>
+        </div>
+    </div>
+
+    <div class="sample-strip">
+        <div class="strip-left">
+            <h3>Electrical Engineering</h3>
+            <p>Power Systems, Machines, Control & Networks</p>
+        </div>
+        <div class="strip-right">
+            <i class="ri-download-2-line"></i>
+        </div>
+    </div>
+
+    <div class="sample-strip">
+        <div class="strip-left">
+            <h3>Electronics Engineering</h3>
+            <p>Embedded Systems, VLSI, IoT & Communication</p>
+        </div>
+        <div class="strip-right">
+            <i class="ri-download-2-line"></i>
+        </div>
+    </div>
+
+    <div class="sample-strip">
+        <div class="strip-left">
+            <h3>Computer Engineering</h3>
+            <p>AI, Machine Learning, Web & Software Projects</p>
+        </div>
+        <div class="strip-right">
+            <i class="ri-download-2-line"></i>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
     </div>
 
@@ -536,85 +1214,151 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="about-section" id="about">
+        <div class="about-image-wrapper">
+            <div class="image-collage">
+                <img src="static/report_ss1.png" alt="Team at Work" class="img-top-left" decoding="sync" loading="lazy">
+                <img src="static/report_ss2.png" alt="Project Detail" class="img-top-right" decoding="sync" loading="lazy">
+                <img src="static/report_ss3.png" alt="Modern Interior" class="img-bottom" decoding="sync" loading="lazy">
+            </div>
+        </div>
+        <div class="about-content">
+            <h2>Report quality & Product description</h2>
+            <p>
+                BlueprintAI stands out with its ability to combine speed, quality, and reliability in one platform. Students no longer need to struggle with formatting, structuring, or searching for reference material BlueprintAI handles it all within minutes.
+            </p>
+            <p>
+               The platform is designed specifically for students who want high-quality project reports without compromising academic integrity. Whether you are short on time or aiming for a polished submission, BlueprintAI helps you present your work with confidence, professionalism, and a level of quality that truly reflects your effort.
+            </p>
+
+            <div class="stats-grid">
+               
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-label">Years in Business</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-label">Users Satisfaction (%)</div>
+                </div>
+               
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    
+
     <footer>
-        <p>&copy; 2024 Project Report Generator. All rights reserved.</p>
+        <p>&copy; 2026 Project Report Generator. All rights reserved.</p>
     </footer>
+
+
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+
+
+
     <script>
-        const form = document.getElementById('dataForm');
-        const loader = document.getElementById('loader');
 
-        // Show loader on form submission
-        function showLoading() {
-            localStorage.setItem('formSubmitted', 'true');
-            document.getElementById('loader').style.display = 'flex';
-        }
+         const form = document.getElementById("dataForm");
 
-        // Stop the loader on page load (handles back navigation)
-        window.onload = function() {
-            loader.style.display = 'none';
-        };
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-        // Stop the loader on pageshow event (handles cache situations)
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted) {
-                loader.style.display = 'none';
+    fetch("/create-order/")
+        .then(res => res.json())
+        .then(data => {
+            const options = {
+                key: data.key,
+                amount: data.amount,
+                currency: "INR",
+                name: "BlueprintAI",
+                description: "Project Report Generation",
+                order_id: data.order_id,
+                callback_url: "/payment-success/",
+                theme: { color: "#007bff" }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+});
+
+
+
+
+    // --- Existing Intersection Observer for Counting Animation ---
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Trigger when 50% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.dataset.target);
+                let current = 0;
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // ~60fps
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        entry.target.textContent = Math.round(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        entry.target.textContent = target; // Ensure final target is exact
+                        if (entry.target.dataset.target === '98') {
+                            entry.target.textContent += '%';
+                        }
+                    }
+                };
+                updateCounter();
+                observer.unobserve(entry.target); // Stop observing once animated
             }
         });
+    }, observerOptions);
+
+    statNumbers.forEach(number => {
+        observer.observe(number);
+    });
+
+
+
+
+
+
+
+
+
+
         
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4JBBJ44"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
     
 </body>
 </html>
