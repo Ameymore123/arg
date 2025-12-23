@@ -15,12 +15,19 @@ urlpatterns = [
     path('login', views.handlelogin, name='handlelogin'),
     path('sign', views.sign, name='sign'),
     path('download', views.download, name="download"),
-    path("create-order/", views.create_order, name="create_order"),
-    path('payment-success/', views.payment_success),
+
+
+
+    # --- Razorpay & Credit Routes ---
+    
+    # Page where user clicks "Pay Now"
+    path('buy-credits/', views.buy_credits, name='buy_credits'),
+    
+    # The URL Razorpay sends data to after a successful transaction
+    path('payment-status/', views.payment_status, name='payment_status'),
     
 
 
 ]
-
 
 
