@@ -14,10 +14,13 @@ urlpatterns = [
     path('logout', views.handlelogout, name='handlelogout'),
     path('login', views.handlelogin, name='handlelogin'),
     path('sign', views.sign, name='sign'),
-    path('download', views.download, name="download")
+    path('download', views.download, name="download"),
+    path("create-order/", views.create_order, name="create_order"),
+    path('payment-success/', views.payment_success),
     
 
 
 ]
+
 
 
