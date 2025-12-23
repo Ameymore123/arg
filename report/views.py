@@ -29,7 +29,66 @@ from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from dotenv import load_dotenv
 from requests import get
 from bs4 import BeautifulSoup
+
+import razorpay
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.conf import settings
 # Create your views here.
+
+
+
+
+
+
+
+
+
+client = razorpay.Client(
+    auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
+)
+
+@login_required
+def create_order(request):
+    amount = 1 * 100  # 1
+    order = client.order.create({
+        "amount": amount,
+        "currency": "INR",
+        "payment_capture": 1
+    })
+
+    return JsonResponse({
+        "order_id": order["id"],
+        "key": settings.RAZORPAY_KEY_ID,
+        "amount": amount
+    })
+
+
+
+
+
+
+
+
+@csrf_exempt
+def payment_success(request):
+    if request.method == "POST":
+        request.session["payment_done"] = True
+        return redirect("/")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def home(request):
@@ -37,6 +96,8 @@ def home(request):
         file_url = None
         user = request.user
         if request.method == 'POST':
+            if not request.session.get("payment_done"):
+                return redirect("/")
             p_i = request.POST.get('prompt')
             prompt_input = p_i.lower()
             load_dotenv()
@@ -75,6 +136,7 @@ def home(request):
                 ed = time.time()
                 tt = (ed-sta)
                 print("Total time to fetch content-------------- ", tt)
+                print(content)
                 if content:
 
                     st = time.time()
@@ -231,6 +293,7 @@ def home(request):
                 Docx_file.objects.create(file=File(f), user=user)
                 print(p_i + ' created successfully ------------------------------------------------------------------------------------------------------------------------------------')
                 
+                request.session.pop("payment_done", None)
 
                 return redirect('download')
                 
@@ -338,6 +401,13 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
+
+
+
+
+
+
+
 
 
 
