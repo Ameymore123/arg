@@ -41,6 +41,8 @@ from .models import Profile, Transaction # Add these imports
 
 
 
+
+
 razorpay_client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
 
@@ -475,6 +477,7 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
+
 
 
 
