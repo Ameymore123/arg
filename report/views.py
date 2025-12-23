@@ -274,7 +274,7 @@ def home(request):
                 return redirect('download')
                 
         
-        return render(request, 'home/index.html', {"user":user})
+        return render(request, 'home/index.html', {"user":user, "profile": profile})
 
     else:
         return redirect('sign')
@@ -477,6 +477,7 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
+
 
 
 
