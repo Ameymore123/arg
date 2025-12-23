@@ -1072,6 +1072,23 @@
 
                 
     <div class="container" style="margin-top: 0px;">
+
+
+
+
+        <div class="credit-info" style="text-align: right; padding: 10px;">
+    <p>Available Credits: <strong>{{ profile.credits }}</strong></p>
+    {% if profile.credits == 0 %}
+        <a href="{% url 'buy_credits' %}" style="color: red; font-weight: bold;">Buy Credits to Generate</a>
+    {% endif %}
+</div>
+
+
+
+{% if error %}
+    <p style="color: red; background: #ffe6e6; padding: 10px; border-radius: 5px;">{{ error }}</p>
+{% endif %}
+
         
         
         <div class="logo">
@@ -1080,13 +1097,26 @@
             <h1 class ="pr" style="font-size: 2vmax;">Project Report Generator</h1>
         </div>
         <p style="font-size: 1.5vmax;">Generate your reports quickly and easily.</p>
-        <form id="dataForm" autocomplete="off" method="post">
-
+        <form autocomplete="off" method="post" onsubmit="showLoading()">
             {% csrf_token %}
             <label for="title" style="font-size: 1.5vmax; margin-top: 15px;">Enter Title or Topic:</label>
             <input type="text"  id="title" placeholder="Type your Topic" name="prompt" style="text-align: center;" required>
             <input type="hidden" name="user" value="{{request.user.id}}">
-            <button type="submit">Generate Report</button>
+
+
+
+
+            {% if profile.credits > 0 %}
+        <button type="submit">Generate Report (1 Credit)</button>
+    {% else %}
+        <button type="button" disabled style="background-color: gray;">Insufficient Credits</button>
+    {% endif %}
+
+
+
+
+
+
         </form>
 
         <div id="download-message" style="display: none;">
@@ -1271,41 +1301,30 @@
     <footer>
         <p>&copy; 2026 Project Report Generator. All rights reserved.</p>
     </footer>
-
-
-
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-
-
-
-
     <script>
+        const form = document.getElementById('dataForm');
+        const loader = document.getElementById('loader');
 
-         const form = document.getElementById("dataForm");
+        // Show loader on form submission
+        function showLoading() {
+            localStorage.setItem('formSubmitted', 'true');
+            document.getElementById('loader').style.display = 'flex';
+        }
 
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
+        // Stop the loader on page load (handles back navigation)
+        window.onload = function() {
+            loader.style.display = 'none';
+        };
 
-    fetch("/create-order/")
-        .then(res => res.json())
-        .then(data => {
-            const options = {
-                key: data.key,
-                amount: data.amount,
-                currency: "INR",
-                name: "BlueprintAI",
-                description: "Project Report Generation",
-                order_id: data.order_id,
-                callback_url: "/payment-success/",
-                theme: { color: "#007bff" }
-            };
-
-            const rzp = new Razorpay(options);
-            rzp.open();
+        // Stop the loader on pageshow event (handles cache situations)
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                loader.style.display = 'none';
+            }
         });
-});
+
+
+
 
 
 
