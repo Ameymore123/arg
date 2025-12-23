@@ -30,74 +30,42 @@ from dotenv import load_dotenv
 from requests import get
 from bs4 import BeautifulSoup
 
-import razorpay
+
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+import razorpay
 from django.conf import settings
+from django.http import JsonResponse
+
+from .models import Profile, Transaction # Add these imports
 # Create your views here.
 
 
 
-
-
-
-
-
-
-client = razorpay.Client(
-    auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
-)
-
-@login_required
-def create_order(request):
-    amount = 1 * 100  # 1
-    order = client.order.create({
-        "amount": amount,
-        "currency": "INR",
-        "payment_capture": 1
-    })
-
-    return JsonResponse({
-        "order_id": order["id"],
-        "key": settings.RAZORPAY_KEY_ID,
-        "amount": amount
-    })
-
-
-
-
-
-
-
-
-@csrf_exempt
-def payment_success(request):
-    if request.method == "POST":
-        request.session["payment_done"] = True
-        return redirect("/")
-
-
-
-
-
-
-
-
-
-
-
-
+razorpay_client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
 
 
 
 def home(request):
     if request.user.is_authenticated:
+
+
+
+        profile, created = Profile.objects.get_or_create(user=request.user)
+
+
+
         file_url = None
         user = request.user
         if request.method == 'POST':
-            if not request.session.get("payment_done"):
-                return redirect("/")
+
+
+            if profile.credits <= 0:
+                return render(request, 'home/index.html', {
+                    "user": request.user, 
+                    "error": "Insufficient Credits! Please buy more."
+                })
+
             p_i = request.POST.get('prompt')
             prompt_input = p_i.lower()
             load_dotenv()
@@ -286,6 +254,13 @@ def home(request):
 
             # Generate the report
             filepath = generate_report(prompt_input, user)
+
+
+
+            profile.credits -= 1
+            profile.save()
+
+
             print(filepath)
 
             # Save Report to Database
@@ -293,7 +268,6 @@ def home(request):
                 Docx_file.objects.create(file=File(f), user=user)
                 print(p_i + ' created successfully ------------------------------------------------------------------------------------------------------------------------------------')
                 
-                request.session.pop("payment_done", None)
 
                 return redirect('download')
                 
@@ -302,6 +276,100 @@ def home(request):
 
     else:
         return redirect('sign')
+
+
+
+
+
+
+
+
+
+
+
+
+def buy_credits(request):
+    # Updated: 1 INR for 5 Credits (or however many you wish to grant)
+    # 1 Rupee = 100 Paise
+    amount = 100  
+    
+    # Create the order in Razorpay
+    razorpay_order = razorpay_client.order.create({
+        'amount': amount,
+        'currency': 'INR',
+        'payment_capture': '1'
+    })
+    
+    # Save transaction record in your database
+    Transaction.objects.create(
+        user=request.user,
+        razorpay_order_id=razorpay_order['id'],
+        amount=amount/100  # This saves '1.0' in the amount field
+    )
+
+    context = {
+        'order_id': razorpay_order['id'],
+        'amount': amount,
+        'razorpay_key': settings.RAZORPAY_KEY_ID, # Replace with your real key
+        'user': request.user
+    }
+    return render(request, 'home/payment.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+@csrf_exempt
+def payment_status(request):
+    if request.method == "POST":
+        res_data = request.POST
+        params_dict = {
+            'razorpay_order_id': res_data['razorpay_order_id'],
+            'razorpay_payment_id': res_data['razorpay_payment_id'],
+            'razorpay_signature': res_data['razorpay_signature']
+        }
+
+        try:
+            # Verify signature
+            razorpay_client.utility.verify_payment_signature(params_dict)
+            
+            # Update Transaction
+            txn = Transaction.objects.get(razorpay_order_id=res_data['razorpay_order_id'])
+            txn.status = "Success"
+            txn.razorpay_payment_id = res_data['razorpay_payment_id']
+            txn.save()
+
+            # Add Credits to Profile
+            profile = Profile.objects.get(user=txn.user)
+            profile.credits += 5 # Grant 5 credits
+            profile.save()
+
+            return redirect('home')
+        except:
+            return HttpResponse("Payment Failed")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -348,6 +416,9 @@ def about(request):
     return render(request, 'home/about.html')
 
 
+
+
+
 def ur(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -358,22 +429,25 @@ def ur(request):
             print(f"User with username {username} already exists.")
             return redirect("log")  # Redirect to login if user exists
 
-        # Create the user and hash the password
+        # 1. Create the user and hash the password
         my_user = User.objects.create_user(username=username, password=password)
         my_user.save()
 
+        # 2. CREATE PROFILE for credits (New Logic)
+        # This ensures the user starts with 0 credits and won't cause errors later
+        Profile.objects.create(user=my_user, credits=0)
+
         print(f"User {my_user.username} created successfully.")
         
-    
+        # 3. Authenticate and Log in the user
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect("home")
 
-
-
     else:
         return HttpResponse('404 - Not found')
+
 
 
 def sign(request):
