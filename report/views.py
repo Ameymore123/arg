@@ -40,7 +40,7 @@ from .models import Profile, Transaction # Add these imports
 # Create your views here.
 
 
-
+from docx.shared import RGBColor
 
 
 razorpay_client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
@@ -144,7 +144,7 @@ def home(request):
 
             def fetch_content(title):
                 try:
-                    response = model.generate_content(f"Generate a detailed and professional Micro Project Report on {title} with proper structure, suitable for engineering students. Include sections such as Introduction in detailed, History in detailed, Working Principle in detailed, Methodology in detailed, Classification in detailed, Types in detailed, Applications in detailed, Results in detailed, Advantages in detailed, Disadvantages in , Conclusion, and References.")
+                    response = model.generate_content(f"Generate a detailed and professional Micro Project Report on {title} with proper structure, suitable for engineering students. Include sections such as Introduction in detailed, History in detailed, Working Principle in detailed, Methodology in detailed, Classification in detailed, Types in detailed, Applications in detailed, Results in detailed, Advantages in detailed, Disadvantages in , Conclusion, and References. Dont use or add the html h1 tag and words like heading 1 or heading 2 in the content. You can keep the numbers.")
                     
                     if response and response.text:
                         return response.text
@@ -166,22 +166,41 @@ def home(request):
                         for run in heading.runs:
                             run.font.size = Pt(18)
                             run.font.name = 'Arial'
+                            run.font.color.rgb = RGBColor(0, 0, 0)
+                            
                     elif line.startswith("## "):
-                        heading = document.add_heading(line[3:], level=2)
+                        heading = document.add_heading(line[3:], level=3)
                         for run in heading.runs:
                             run.font.size = Pt(16)
                             run.font.name = 'Arial'
+                            run.font.color.rgb = RGBColor(0, 0, 0)
+
+
                     elif line.startswith("### "):
                         heading = document.add_heading(line[4:], level=3)
                         for run in heading.runs:
                             run.font.size = Pt(14)
                             run.font.name = 'Arial'
+                            run.font.color.rgb = RGBColor(0, 0, 0)
 
                     elif line.startswith("#### "):
                         heading = document.add_heading(line[5:], level=3)
                         for run in heading.runs:
                             run.font.size = Pt(12)
                             run.font.name = 'Arial'
+                            run.font.color.rgb = RGBColor(0, 0, 0)
+
+
+                    elif line.startswith("** "):
+                        heading = document.add_heading(line[6:], level=1)
+                        for run in heading.runs:
+                            run.font.size = Pt(12)
+                            run.font.name = 'Arial'
+                            run.font.color.rgb = RGBColor(0, 0, 0)
+                    
+
+
+
 
                     elif line.startswith("* "):
                         p = document.add_paragraph(line[2:].replace("*", ""), style='ListBullet')
@@ -293,7 +312,7 @@ def home(request):
 def buy_credits(request):
     # Updated: 1 INR for 5 Credits (or however many you wish to grant)
     # 1 Rupee = 100 Paise
-    amount = 100  
+    amount = 2900
     
     # Create the order in Razorpay
     razorpay_order = razorpay_client.order.create({
@@ -477,8 +496,6 @@ def download(request):
         message = None
 
     return render(request, 'home/download.html', {"file_url": file_url, "message": message})
-
-
 
 
 
