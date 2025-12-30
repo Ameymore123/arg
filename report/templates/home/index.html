@@ -323,7 +323,7 @@
         .lnavr{
             display: flex;
             width: 100%;
-            padding: 20px 30px;
+            padding: 15px 30px;
             justify-content: space-between;
             
         }
@@ -334,6 +334,7 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
+            padding-top: 8px;
         }
 
 
@@ -346,7 +347,7 @@
 
         .left .textcenter {
             position: absolute;
-            top: 50%;
+            top: 42%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -375,11 +376,11 @@
 
 
             .lnavr{
-                margin-top: -300px;
+                margin-top: -350px;
             }
 
             .navi{
-                height: 350px;
+                height: 400px;
             }
 
 
@@ -406,6 +407,11 @@
                 
             }
 
+
+            .textcenter{
+                margin-top: 50px;
+            }
+
             .textcenter .th{
                 font-size: 18vw;
             }
@@ -417,6 +423,13 @@
             .logo{
                 margin-bottom: -50px;
             }
+
+
+
+            input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
 
             
         }
@@ -552,6 +565,17 @@
     }
 
 
+
+
+
+
+
+
+
+    input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
 
 
 }
@@ -931,6 +955,29 @@
         z-index: auto !important;
         /* Reset z-index */
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
 }
 
 /* ================= MOBILE FIX FOR ABOUT SECTION ================= */
@@ -1018,7 +1065,180 @@
     .stat-item {
         transition: none !important;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.credit-card.compact1 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 14px;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        rgb(2, 11, 105),
+        rgba(140, 0, 255, 0.756)
+    );
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.25),
+        inset 0 0 8px rgba(255, 255, 255, 0.05);
+
+    font-family: "Inter", "Segoe UI", sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+
+
+
+
+.credit-card.compact2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 14px;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        rgb(2, 11, 105),
+        rgba(140, 0, 255, 0.756)
+    );
+
+
+
+
+    font-family: "Inter", "Segoe UI", sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+
+.credit-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: white;
+}
+
+.credit-number {
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+
+
+
+
+
+@media (max-width: 3000px) {
+    .credit-card.compact1 {
+        display: none;
+    }
+
+
+
+
+
+    input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
+
+}
+
+
+
+
+
+
+@media (max-width: 500px) {
+.credit-card.compact2{
+    display: none;
+}
+
+
+.credit-card.compact1 {
+    display: inline-flex;
+}
+
+
+
+
+
+
+
+
+
+.container input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.bolt-icon {
+    width: 15px;
+    height: 15px;
+    transform: scaleY(1.4);
+    color: #7c3aed;
+}
+
 
 
 
@@ -1050,16 +1270,48 @@
 
         <div class="left">
             <div class="navi">
-                <i class="ri-arrow-left-line"></i> 
-                <div class="lnavr">
+                <i class="ri-arrow-left-line" style="display: none; background-color: rgba(255, 255, 255, 0.164); padding-top: 25.5px; padding-bottom: 25.5px;"></i> 
+                <div class="lnavr" style="background-color: rgba(255, 255, 255, 0.164);">
                     <a href="/about">About Us</a> <a href="#">{{ user.username }}</a> <a href="/logout">Log out</a>
+
+                    
+
+<div class="credit-card compact2" style="margin-top: -5px;">
+
+
+    <!--
+    <span>&#9889;</span>
+-->
+
+
+<svg class="bolt-icon" viewBox="0 0 24 24" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+    <path d="M13 2L3 14H11L9 22L21 8H13L13 2Z"
+          fill="currentColor"/>
+</svg>
+
+
+
+
+
+
+
+    <span class="credit-label">Credits</span>
+    <span class="credit-number">{{ profile.credits }}</span>
+</div>
+
+
 
                 </div>
             </div>
 
             <div class="textcenter">
                 <img src="{% static 'bdl2.png' %}" alt="" style="width: 15vmax; height: auto;">
-                <p class="tp" style="font-size: 1.5vmax; margin-top: 5px; text-align: justify;">Now get rid off the clutter of too many buttons, make a project report in just three steps with the help of our project report generator within minutes. "{{ user }}"</p>
+
+                <p class="tp" style="font-size: 1.3vmax; margin-top: 5px; text-align: justify;"><strong>One and only</strong> AI tool for project Diploma & Engineering report generation.</p>
+                <p class="tp" style="font-size: 1.3vmax; margin-top: 10px; text-align: justify;">Even ChatGPT and any other AI tool can't generate the whole long Report with <strong>Images.</strong></p>
+                <br>
+                <p class="tp" style="font-size: 1.3vmax; margin-top: 5px; text-align: justify;">Now get rid off the clutter of too many buttons, make a project report in just three steps with the help of our project report generator within minutes.</p>
             </div>
 
         </div>
@@ -1076,22 +1328,41 @@
 
 
 
-        <div class="credit-info" style="text-align: right; padding: 10px;">
-    <p>Available Credits: <strong>{{ profile.credits }}</strong></p>
-    {% if profile.credits == 0 %}
-        <a href="{% url 'buy_credits' %}" style="color: red; font-weight: bold;">Buy Credits to Generate</a>
-    {% endif %}
+<div class="credit-card compact1">
+
+
+
+
+
+
+<svg class="bolt-icon" viewBox="0 0 24 24" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+    <path d="M13 2L3 14H11L9 22L21 8H13L13 2Z"
+          fill="currentColor"/>
+</svg>
+
+
+
+
+
+
+
+
+    <span class="credit-label">Credits</span>
+    <span class="credit-number">{{ profile.credits }}</span>
 </div>
 
 
 
+
 {% if error %}
-    <p style="color: red; background: #ffe6e6; padding: 10px; border-radius: 5px;">{{ error }}</p>
+    <p style="color: rgb(255, 174, 0); background: #fffb00; padding: 10px; border-radius: 5px; margin-top: 20px;">{{ error }}</p>
 {% endif %}
+
 
         
         
-        <div class="logo">
+        <div class="logo" style="margin-top: 40px;">
             
             <img src="{% static 'logo_png.png' %}" alt="Logo" style="height: 6vw; width: 7vw; margin-top: -1vw;">
             <h1 class ="pr" style="font-size: 2vmax;">Project Report Generator</h1>
@@ -1100,16 +1371,22 @@
         <form autocomplete="off" method="post" onsubmit="showLoading()">
             {% csrf_token %}
             <label for="title" style="font-size: 1.5vmax; margin-top: 15px;">Enter Title or Topic:</label>
-            <input type="text"  id="title" placeholder="Type your Topic" name="prompt" style="text-align: center;" required>
+            <input type="text" id="title" placeholder="Type your Topic" name="prompt" style="text-align: center;" {% if profile.credits < 1 %} disabled {% endif %} required>
             <input type="hidden" name="user" value="{{request.user.id}}">
 
 
 
 
-            {% if profile.credits > 0 %}
+    {% if profile.credits > 0 %}
         <button type="submit">Generate Report (1 Credit)</button>
     {% else %}
-        <button type="button" disabled style="background-color: gray;">Insufficient Credits</button>
+        <p style="margin-top: 30px;"><strong>Generate 1 report per credit</strong></p>
+    {% endif %}
+
+
+
+    {% if profile.credits == 0 %}
+        <a href="{% url 'buy_credits' %}" style="margin-top: 10px; color: white; font-weight: bold; height: 50px; width: 170px; background-color: rgb(153, 0, 255); border-radius: 30px; text-decoration: none; padding-top: 15px;">Buy Credits</a>
     {% endif %}
 
 
