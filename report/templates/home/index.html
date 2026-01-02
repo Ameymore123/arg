@@ -2661,8 +2661,32 @@ document.onkeydown = function(e) {
 
         
     </script>
+
+
+
+
+    
+<script>
+  const forbiddenRegex = /[>=<?\/\\|*\^!()\-\+.\'"~`:;{}\[\]]/g;
+
+  const titleInput = document.getElementById("title");
+
+  if (titleInput) {
+    titleInput.addEventListener("input", () => {
+      titleInput.value = titleInput.value.replace(forbiddenRegex, "");
+    });
+  }
+</script>
+
+
+
+
+
+
+
     
 </body>
 </html>
+
 
 
