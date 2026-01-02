@@ -116,12 +116,220 @@
             color: #6b7280;
             margin-top: 10px;
         }
+
+
+
+
+
+
+
+
+ .credits-container {
+      max-width: 450px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon-wrapper {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: #32C75F;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .icon {
+      font-size: 32px;
+    }
+
+    .title {
+      color: #1e293b;
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .message {
+      color: #64748b;
+      font-size: 15px;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .credits-badge {
+      background: #f0f8fd;
+      border: 1px solid #c2bbf7;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .credits-amount {
+      font-size: 40px;
+      font-weight: 700;
+      color: #0065fc;
+      margin-bottom: 4px;
+    }
+
+    .credits-label {
+      font-size: 13px;
+      color: #1485ff;
+      font-weight: 500;
+    }
+
+    .action-button {
+      width: 100%;
+      padding: 14px;
+      background: #298dff;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .action-button:hover {
+      background: #054696;
+    }
+
+    .action-button:active {
+      transform: scale(0.98);
+    }
+
+    .secondary-link {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      color: #64748b;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .secondary-link:hover {
+      color: #334155;
+    }
+
+    @media (max-width: 480px) {
+      .credits-container {
+        padding: 24px;
+      }
+
+      .icon-wrapper {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 16px;
+      }
+
+      .icon {
+        font-size: 28px;
+      }
+
+      .title {
+        font-size: 20px;
+      }
+
+      .message {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .credits-badge {
+        padding: 16px;
+      }
+
+      .credits-amount {
+        font-size: 36px;
+      }
+
+      .action-button {
+        padding: 13px;
+        font-size: 14px;
+      }
+
+      .secondary-link {
+        font-size: 13px;
+        margin-top: 12px;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 
 <body>
 
+
+     {% if user.profile.credits != 0 %}
+
+
+
+<!--
+        <div class="credit-info">
+  <div class="credit-icon">✔</div>
+  <p>
+    You already have {{ user.credits }} credits.<br>
+    <span>Use them before purchasing more.</span>
+  </p>
+</div>
+
+
+-->
+
+
+
+
+
+
+
+<div class="credits-container">
+    <div class="icon-wrapper">
+      <div class="icon">✓</div>
+    </div>
+    
+    <h2 class="title">You Have Credits Available</h2>
+    <p class="message">You already have credits. You can use them before purchasing more.</p>
+    
+    <div class="credits-badge">
+      <div class="credits-amount">{{ user.profile.credits }}</div>
+      <div class="credits-label">Credits Remaining</div>
+    </div>
+    
+  </div>
+
+
+    {% else %}
+
+
+
 <div class="checkout-card">
+
+
+
+   
 
     <div class="checkout-header">
         <h1>Order Summary</h1>
@@ -192,6 +400,10 @@
         e.preventDefault();
     };
 </script>
+
+
+
+{% endif %}
 
 </body>
 </html>
