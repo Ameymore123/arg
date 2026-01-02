@@ -42,6 +42,8 @@ from .models import Profile, Transaction # Add these imports
 
 from docx.shared import RGBColor
 
+from django.contrib import messages
+
 
 razorpay_client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
@@ -370,7 +372,7 @@ def payment_status(request):
 
             # Add Credits to Profile
             profile = Profile.objects.get(user=txn.user)
-            profile.credits += 5 # Grant 5 credits
+            profile.credits += 2 # Grant 5 credits
             profile.save()
 
             return redirect('home')
@@ -405,22 +407,22 @@ def log(request):
 def handlelogin(request):
     if request.method == 'POST':
 
-        loginusername = request.POST['loginusername']
-        loginpass = request.POST['loginpass']
+        loginusername = request.POST.get('loginusername')
+        loginpass = request.POST.get('loginpass')
 
         user = authenticate(username=loginusername, password=loginpass)
 
         if user is not None:
-
             login(request, user)
             return redirect('/')
         else:
-            
-            print("invalid credentials")
-            print(loginusername)
-            print(loginpass)
+            messages.error(request, "Invalid username or password")
             return redirect('/log')
+
     return HttpResponse('404 - Not Found')
+
+
+
 
 
 
