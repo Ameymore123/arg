@@ -1,189 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueprintAI - Generate AI-Powered Project Reports</title>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5VRB33FSR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-  gtag('config', 'G-X5VRB33FSR');
-</script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: "Segoe UI", sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background: #f5f8ff;
+    }
+
+    /* ===== NETFLIX STYLE BACKGROUND ===== */
+    .bg-wrapper {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .bg-grid {
+      position: absolute;
+      width: 140%;
+      height: 140%;
+      left: -20%;
+      top: -20%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      transform: rotate(-12deg);
+      animation: moveGrid 50s linear infinite;
+    }
+
+    .bg-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    @keyframes moveGrid {
+      0% {
+        transform: rotate(-12deg) translateY(0);
+      }
+      100% {
+        transform: rotate(-12deg) translateY(-300px);
+      }
+    }
+
+    /* DARK OVERLAY (NETFLIX FEEL) */
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(245, 248, 255, 0.097), rgba(245, 248, 255, 0.097)),
+        radial-gradient(circle at center, rgba(245, 248, 255, 0.097), rgba(245, 248, 255, 0.097));
+      z-index: -1;
+    }
+
+    /* ===== FORM CONTAINER ===== */
+    .container {
+      width: 420px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(37, 117, 252, 0.25);
+      text-align: center;
+      margin: auto;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .container h1 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+
+    .container p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .container h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #2575fc;
+    }
+
+    .form-field {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .form-field i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      font-size: 15px;
+      border-radius: 12px;
+      border: 1px solid #dbe3ff;
+      background: #f7f9ff;
+      transition: 0.3s;
+    }
+
+    .form-field input:focus {
+      outline: none;
+      background: #fff;
+      border-color: #2575fc;
+      box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(37, 117, 252, 0.4);
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #2575fc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+
+
+
+
+
+    /* ========================= */
+/* ===== RESPONSIVE ======== */
+/* ========================= */
+
+/* TABLET */
+@media (max-width: 1023px) {
+  .bg-grid {
+    grid-template-columns: repeat(5, 1fr);
+    transform: rotate(-7deg);
+
+    animation-duration: 65s;
+  }
+
+  .container {
+    width: 380px;
+    padding: 36px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .bg-grid {
+    width: 160%;
+    height: 160%;
+    left: -30%;
+    top: -30%;
+    grid-template-columns: repeat(3, 1fr);
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlueprintAI - Generate AI-Powered Project Reports</title>
-    <meta name="description" content="BlueprintAI helps students generate well-formatted project reports with images in just seconds. Enter your project topic and get a ready-made DOCX file.">
-    <meta name="keywords" content="Project Report Generator, Engineering Reports, AI Report Creator, Automated Report Generator">
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    animation-duration: 90s;
+    transform: rotate(-7deg);
 
+  }
 
+  @keyframes moveGrid {
+    0% {
+      transform: rotate(-7deg) translateY(0);
+    }
+    100% {
+      transform: rotate(-7deg) translateY(-200px);
+    }
+  }
 
-
-
-
-
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T4JBBJ44');</script>
-<!-- End Google Tag Manager -->
-
-
-
-
-
-
-
-
+  .container {
+    width: calc(100% - 32px);
+    padding: 28px 22px;
+    border-radius: 16px;
+    top: auto;
+    transform: none;
+    margin: 150px auto 40px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
     
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: white;
-            text-align: center;
-        }
-        .container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            width: 100%;
-            max-width: 420px;
-            box-sizing: border-box;
-            color: black;
-        }
-        .container h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .container p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-        .form-field {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        .form-field input {
-            width: 100%;
-            padding: 12px 20px;
-            font-size: 16px;
-            border: 1px solid #d1d1d1;
-            border-radius: 10px;
-            background-color: #f7f7f7;
-            transition: 0.3s ease;
-            box-sizing: border-box;
-        }
-        .form-field input:focus {
-            border-color: #2575fc;
-            background-color: #ffffff;
-            box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
-        }
-        .form-field i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            color: #aaa;
-        }
-        .form-field input[type="text"], .form-field input[type="password"] {
-            padding-left: 40px;
-        }
-        .btn {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            background-color: #2575fc;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #1a5bb8;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #2575fc;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  }
+
+  .container h1 {
+    font-size: 22px;
+  }
+
+  .container p {
+    font-size: 13px;
+  }
+
+  .container h2 {
+    font-size: 16px;
+  }
+
+  .btn {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 380px) {
+  .container {
+    padding: 24px 18px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Welcome to BlueprintAI</h1>
-        <p>Create professional project reports instantly. Just enter your project topic, and our AI will generate a formatted DOCX report with images for you!</p>
-        <h2>Create Your Account</h2>
-        <form action="/ur" method="post">
-            {% csrf_token %}
-            <div class="form-field">
-                <i class="fas fa-user"></i>
-                <input type="text" name="username" id="userName" placeholder="Username" required>
-            </div>
-            <div class="form-field">
-                <i class="fas fa-key"></i>
-                <input type="password" name="pass" id="pwd" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn">Sign Up</button>
-            <div class="footer">
-                <a href="log">Already have an account? Login</a>
-            </div>
-        </form>
+
+  <!-- BACKGROUND -->
+  <div class="bg-wrapper">
+    <div class="bg-grid">
+      <!-- Replace these with your PROJECT REPORT PAGE IMAGES -->
+      <img src="static/n r ss1.png">
+      <img src="static/n r ss2.png">
+      <img src="static/n r ss3.png">
+      <img src="static/n r ss4.png">
+      <img src="static/n r ss5.png">
+      <img src="static/n r ss6.png">
+      <img src="static/n r ss7.png">
+      <img src="static/n r ss9.png">
+      <img src="static/n r ss8.png">
+      <img src="static/n r ss10.png">
+      <img src="static/n r ss1.png">
+      <img src="static/n r ss3.png">
     </div>
+  </div>
 
+  <div class="bg-overlay"></div>
 
+  <!-- SIGNUP FORM -->
+  <div class="container">
+    <h1>Welcome to BlueprintAI</h1>
+    <p>
+      Generate professional project reports with images in seconds.
+      Designed for engineering students.
+    </p>
 
+    <h2>Create Your Account</h2>
 
+    <form action="/ur" method="post">
+      {% csrf_token %}
 
+      <div class="form-field">
+        <i class="fas fa-user"></i>
+        <input type="text" name="username" placeholder="Username" required />
+      </div>
 
+      <div class="form-field">
+        <i class="fas fa-key"></i>
+        <input type="password" name="pass" placeholder="Password" required />
+      </div>
 
+      <button class="btn" type="submit">Sign Up</button>
 
+      <div class="footer">
+        <a href="log">Already have an account? Login</a>
+      </div>
+    </form>
+  </div>
 
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4JBBJ44"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 </body>
 </html>
